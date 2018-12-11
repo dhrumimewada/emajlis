@@ -63,6 +63,7 @@ class Cron extends CI_Controller {
 		$this->db->where('status', '1');
 		$this->db->where('device_token !=', '');
 		$this->db->where('device_type !=', '');
+		$this->db->where('id', '107');
 		$this->db->from('member');
         $sql_query = $this->db->get();
         if ($sql_query->num_rows() > 0){
@@ -89,7 +90,7 @@ class Cron extends CI_Controller {
         	echo "<pre>";
         	foreach ($member_data as $key => $value) {
         		
-        		$fcmFields['data']['to'] = $value['device_token'];
+        		$fcmFields['to'] = $value['device_token'];
 
         		$ch = curl_init();
 	            curl_setopt( $ch,CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send' );
@@ -100,7 +101,7 @@ class Cron extends CI_Controller {
 	            curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fcmFields ) );
 	            $result = curl_exec($ch );
 	            curl_close( $ch );
-	            
+	            print_r($fcmFields);
 	            print_r($result);
 	            // print_r("send");
 
