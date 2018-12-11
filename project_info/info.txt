@@ -1,0 +1,35 @@
+-----------------------------------------------------------------------------
+
+Admin website:
+
+http://emajlis.excellentwebworld.in/
+email - emajlis@admin.com
+pw - 123456
+
+-----------------------------------------------------------------------------
+
+FTP:
+
+ftp.excellentwebworld.in
+emajlis@excellentwebworld.in
+Emajlis@123*
+
+-----------------------------------------------------------------------------
+
+DATABASE : 
+
+https://gator3303.hostgator.com:2083
+user: developer
+pass: nTf~0ttf3gCb
+
+-----------------------------------------------------------------------------
+
+API list:
+https://docs.google.com/spreadsheets/d/113Jt1na5Ga8VQqZmBPXQLKflUtXsiiBh26T99hDWejo/edit?usp=sharing
+
+-----------------------------------------------------------------------------
+
+App screens link
+https://projects.invisionapp.com/share/MXOQBONDZC7#/screens/327196403_01-Splash-Screen
+
+-----------------------------------------------------------------------------
