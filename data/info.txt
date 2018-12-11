@@ -27,6 +27,8 @@ pass: nTf~0ttf3gCb
 
 API list:
 https://docs.google.com/spreadsheets/d/113Jt1na5Ga8VQqZmBPXQLKflUtXsiiBh26T99hDWejo/edit?usp=sharing
+email: developer.eww2@gmail.com
+password: developer123*
 
 -----------------------------------------------------------------------------
 
@@ -34,3 +36,10 @@ App screens link
 https://projects.invisionapp.com/share/MXOQBONDZC7#/screens/327196403_01-Splash-Screen
 
 -----------------------------------------------------------------------------
+
+New Upload
+URL: 13.233.202.14
+
+DB info - 
+Username: root
+Password: Emajlis123*#*
