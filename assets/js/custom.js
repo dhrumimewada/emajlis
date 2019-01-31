@@ -33,7 +33,7 @@ function validate_education(){
     });
     $('[name*="school[]"]').each(function (){
         if($(this).val().trim() == ''){
-            $(this).after('<label class="validation-error-label">The school field is required.</label>');
+            $(this).after('<label class="validation-error-label">The institution field is required.</label>');
             flag = false;
         }
     });
@@ -42,11 +42,12 @@ function validate_education(){
 
 $(document).ready(function() {
     var user_url = base_url+ 'ajax/users_list/';
-    $('#users_table').DataTable( {
+    var member_table = $('#users_table').DataTable( {
         "ajax": {
             url : user_url,
             type : 'GET'
         },
+        "order":[[ 0, "desc" ]],
         createdRow: function(row, data, dataIndex ) {
                    $(row).attr("id", "row_id_"+data[0]);
               },
@@ -54,7 +55,8 @@ $(document).ready(function() {
             {
                 "targets": [ 0 ],
                 "visible": false
-            }
+            },
+            { "orderable": false, "targets": 4 }
         ]
     } );
 
@@ -66,6 +68,7 @@ $(document).ready(function() {
             url : hashtag_url,
             type : 'GET'
         },
+        "order":[[ 0, "desc" ]],
         createdRow: function(row, data, dataIndex ) {
                    $(row).attr("id", "row_id_"+data[0]);
               },
@@ -73,7 +76,8 @@ $(document).ready(function() {
             {
                 "targets": [ 0 ],
                 "visible": false
-            }
+            },
+            { "orderable": false, "targets": 3 }
         ]
     });
 
@@ -84,6 +88,7 @@ $(document).ready(function() {
             url : looking_for_url,
             type : 'GET'
         },
+        "order":[[ 0, "desc" ]],
         createdRow: function(row, data, dataIndex ) {
                    $(row).attr("id", "row_id_"+data[0]);
               },
@@ -91,7 +96,8 @@ $(document).ready(function() {
             {
                 "targets": [ 0 ],
                 "visible": false
-            }
+            },
+            { "orderable": false, "targets": 3 }
         ]
     });
 
@@ -101,6 +107,7 @@ $(document).ready(function() {
             url : meeting_preference_url,
             type : 'GET'
         },
+        "order":[[ 0, "desc" ]],
         createdRow: function(row, data, dataIndex ) {
                    $(row).attr("id", "row_id_"+data[0]);
               },
@@ -119,6 +126,7 @@ $(document).ready(function() {
             url : industry_url,
             type : 'GET'
         },
+        "order":[[ 0, "desc" ]],
         createdRow: function(row, data, dataIndex ) {
                    $(row).attr("id", "row_id_"+data[0]);
               },
@@ -126,7 +134,8 @@ $(document).ready(function() {
             {
                 "targets": [ 0 ],
                 "visible": false
-            }
+            },
+            { "orderable": false, "targets": 2 }
         ]
     });
 
@@ -136,6 +145,7 @@ $(document).ready(function() {
             url : vendor_partner_url,
             type : 'GET'
         },
+        "order":[[ 0, "desc" ]],
         createdRow: function(row, data, dataIndex ) {
                    $(row).attr("id", "row_id_"+data[0]);
               },
@@ -153,6 +163,7 @@ $(document).ready(function() {
             url : voucher_url,
             type : 'GET'
         },
+        "order":[[ 0, "desc" ]],
         createdRow: function(row, data, dataIndex ) {
                    $(row).attr("id", "row_id_"+data[0]);
               },
@@ -170,6 +181,7 @@ $(document).ready(function() {
             url : advertise_url,
             type : 'GET'
         },
+        "order":[[ 0, "desc" ]],
         createdRow: function(row, data, dataIndex ) {
                    $(row).attr("id", "row_id_"+data[0]);
               },
@@ -177,7 +189,8 @@ $(document).ready(function() {
             {
                 "targets": [ 0 ],
                 "visible": false
-            }
+            },
+            { "orderable": false, "targets": 4 }
         ]
     });
 
@@ -199,6 +212,7 @@ $(document).ready(function() {
             url : admin_url,
             type : 'GET'
         },
+        "order":[[ 0, "desc" ]],
         createdRow: function(row, data, dataIndex ) {
                    $(row).attr("id", "row_id_"+data[0]);
               },
@@ -206,7 +220,8 @@ $(document).ready(function() {
             {
                 "targets": [ 0 ],
                 "visible": false
-            }
+            },
+            { "orderable": false, "targets": 4 }
         ]
     });
 
@@ -239,7 +254,7 @@ $(document).ready(function() {
                         '<input  name="degree[]" type="text" class="form-control" placeholder="Enter degree" autocomplete="off" value="">'+
                     '</div>'+
                     '<div class="col-md-5">'+
-                        '<input  name="school[]" type="text" class="form-control" placeholder="Enter school" autocomplete="off" value="">'+
+                        '<input  name="school[]" type="text" class="form-control" placeholder="Enter institution" autocomplete="off" value="">'+
                     '</div>'+
                     '<div class="col-md-2">'+
                      '<label class="btn btn-danger waves-effect waves-light remove-btn remove"><i class="ion-close-round"></i></label>'+
@@ -288,7 +303,11 @@ $.validator.addMethod("alpha", function(value, element) {
     errorClass: 'validation-error-label',
     successClass: 'validation-valid-label',
     errorPlacement: function(error, element) {
-                error.insertAfter(element);
+            if (element.parents('div').hasClass('custom-radio')) {
+                error.appendTo(element.parent());
+            }else{
+              error.insertAfter(element);
+            }
               },
    rules: {
       fullname: {
@@ -314,6 +333,9 @@ $.validator.addMethod("alpha", function(value, element) {
       confirmpassword: {
           required:true,
           equalTo: "#password"
+      },
+      gender:{
+        required:true 
       },
       lat: 'required',
       linkedin_link:{
@@ -360,6 +382,9 @@ $.validator.addMethod("alpha", function(value, element) {
             confirmpassword: {
               required: "The confirm password field is required.",
               equalTo: "The confirm password field does not match the password field."
+            },
+            gender:{
+              required: "The gender field is required."
             },
             lat: "Please select address from google suggestion.",
             linkedin_link:{
@@ -576,6 +601,14 @@ $( "#add_edit_vouchers" ).validate({
 
 $( "#add_edit_advertise" ).validate({
    ignore: [],
+   errorPlacement: function(error, element) {
+      if (element.hasClass('filestyle')) {
+              error.appendTo(element.parent());
+          }else{
+            error.insertAfter(element);
+          }
+              
+            },
    rules: {
       title: {
         required:true,
@@ -592,22 +625,23 @@ $( "#add_edit_advertise" ).validate({
             return $.trim(value);
         }
       },
-      description:{
-        normalizer: function (value) {
-            return $.trim(value);
-        }
+      image:{
+        required:false
       }
   },
   messages: {
       title: {
-        required: "The advertis title field is required.",
+        required: "The title field is required.",
         minlength: jQuery.validator.format("At least {0} characters required."),
         maxlength: jQuery.validator.format("Maximum {0} characters allowed.")
       },
       url: {
         required:"The url field is required.",
         url:"The url field is invalid."
-      } 
+      },
+      image:{
+        required:"The image field is required."
+      }
   }
  });
 
@@ -652,7 +686,7 @@ $( "#preference_add_edit" ).validate({
                 }
       },
       image:{
-        required: true
+        required: false
       }
   },
   messages: {
@@ -840,6 +874,51 @@ function delete_single_record(id,table,name) {
                     }
                   };
                   xmlhttp.open("GET",base_url+"ajax/delete/"+table+'/'+id,true);
+                  xmlhttp.send();
+              } 
+            });
+}
+
+function softdelete_single_record(id,table,name) {
+            swal({
+                title: "Are you sure?",
+                text: "you want to delete this "+name,
+                type: "error",
+                showCancelButton: true,
+                cancelButtonClass: 'btn-default btn-md waves-effect member-cancel',
+                confirmButtonClass: 'btn-danger btn-md waves-effect waves-light member-delete',
+                confirmButtonText: 'Delete!'
+            },
+            function(isConfirm) 
+            {
+              if (isConfirm) 
+              {
+                  if (window.XMLHttpRequest) 
+                  {
+                    xmlhttp = new XMLHttpRequest();
+                  } else 
+                  {
+                      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                  }
+                  xmlhttp.onreadystatechange = function() 
+                  {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+                    {
+                      //alert( xmlhttp.responseText);
+                      console.log( "row_id_"+id);
+                      if(xmlhttp.responseText)
+                      {
+                        document.getElementById("row_id_"+id).innerHTML = '';
+                        var capital = capitalizeFirstLetter(name);
+                        toastr.success(capital+' deleted successfully.');
+                      }
+                      else
+                      {
+                        toastr.error('Something went wrong.');
+                      }             
+                    }
+                  };
+                  xmlhttp.open("GET",base_url+"ajax/softdelete/"+table+'/'+id,true);
                   xmlhttp.send();
               } 
             });

@@ -35,6 +35,8 @@ class Members extends CI_Controller {
 	}
 
 	public function add(){
+
+
 		$validation_rules = array(
 					
 					array('field' => 'fullname', 'label' => 'full name', 'rules' => 'trim|required|min_length[3]|max_length[30]'),
@@ -84,7 +86,9 @@ class Members extends CI_Controller {
 			}
 			
 			if($file_upload){
-
+				// echo "<pre>";
+				// print_r($_POST);
+				// exit;
 				
 				$data['fullname'] = ucwords($this->input->post('fullname'));
 				$data['email'] = $this->input->post('email');
@@ -93,13 +97,22 @@ class Members extends CI_Controller {
 				$data['lat'] = $this->input->post('lat');
 				$data['lang'] = $this->input->post('lang');
 				$data['goal_description'] = $this->input->post('goal_description');
-				//$data['current_organization'] = $this->input->post('current_organization');
-				$data['current_organization'] = '';
-				$data['jobtitle'] = '';
-				//$data['jobtitle'] = $this->input->post('jobtitle');
+				if($this->input->post('current_organization'))
+				{
+					$data['current_organization'] = $this->input->post('current_organization');
+				}
+				else
+				{
+					$data['current_organization'] = '';
+				}
+				// $data['current_organization'] = '';
+				// $data['jobtitle'] = '';
+				$data['jobtitle'] = $this->input->post('occupation');
 				if(!is_null($this->input->post('gender'))){
 					$data['gender'] = $this->input->post('gender');
 				}
+				// echo "<pre>";
+				// print_r($data); exit;
 				$this->db->insert('member',$data);
 				$insert_id = $this->db->insert_id();
 				$this->db->trans_complete();
@@ -124,7 +137,7 @@ class Members extends CI_Controller {
 	                foreach ($this->input->post('lookingfor') as $key => $value) {
 	                	$member_goal = array( 
 		                    'member_id' => $insert_id,
-		                    'lookingfor_id' => $value
+		                    'name' => $value
 		                );
 		                $this->db->insert('member_goal', $member_goal);
 	                }
@@ -181,7 +194,15 @@ class Members extends CI_Controller {
                 }
 				
                 $this->db->trans_complete();
+
+                $template_path = BASE_URL().'email_template/welcome.php';
+				$to = array($this->input->post('email'));
+				$subject = "Emajlis - Welcome";
+
+				$send_mail = sendmail($to, $subject, $template_path);
 			}
+
+			
 
 			// print_r($this->db->insert_id());
 			// exit;
@@ -284,6 +305,16 @@ class Members extends CI_Controller {
 			if(!is_null($this->input->post('gender'))){
 				$data['gender'] = $this->input->post('gender');
 			}
+
+			if($this->input->post('current_organization'))
+			{
+				$data['current_organization'] = $this->input->post('current_organization');
+			}
+			else
+			{
+				$data['current_organization'] = '';
+			}
+			$data['jobtitle'] = $this->input->post('occupation');
 			
 			$this->db->where('id',$this->input->post('id'));
 
@@ -304,7 +335,7 @@ class Members extends CI_Controller {
 					foreach ($this->input->post('lookingfor') as $key => $value) {
 	                	$member_goal = array( 
 		                    'member_id' => $this->input->post('id'),
-		                    'lookingfor_id' => $value
+		                    'name' => $value
 		                );
 		                $this->db->insert('member_goal', $member_goal);
 	                }

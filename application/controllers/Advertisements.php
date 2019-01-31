@@ -35,10 +35,8 @@ class Advertisements extends CI_Controller {
 	public function add()
 	{
 		$validation_rules = array(
-					
-					array('field' => 'title', 'label' => 'advertisement title', 'rules' => 'trim|required|min_length[3]|max_length[50]|is_unique[advertise.title]'),
-					array('field' => 'url', 'label' => 'url', 'rules' => 'trim|required|valid_url'),
-					array('field' => 'description', 'label' => 'description', 'rules' => 'trim')
+					array('field' => 'title', 'label' => 'title', 'rules' => 'trim|required'),
+					array('field' => 'url', 'label' => 'url', 'rules' => 'trim|required|valid_url')
 				);
 
 		$this->form_validation->set_rules($validation_rules);
@@ -78,7 +76,6 @@ class Advertisements extends CI_Controller {
 			if($file_upload){
 
 				$data['title'] = $this->input->post('title');
-				$data['description'] = $this->input->post('description');
 				$data['url'] = $this->input->post('url');
 				$data['impression_count'] = '0';
 			
@@ -118,10 +115,8 @@ class Advertisements extends CI_Controller {
 	public function edit($id = '')
 	{
 		$validation_rules = array(
-					
-					array('field' => 'title', 'label' => 'advertise title', 'rules' => 'trim|required|min_length[3]|max_length[50]|callback_isexists_advertisement[' . $this->input->post('id') . ']'),
-					array('field' => 'url', 'label' => 'url', 'rules' => 'trim|required|valid_url'),
-					array('field' => 'description', 'label' => 'description', 'rules' => 'trim')
+					array('field' => 'title', 'label' => 'title', 'rules' => 'trim|required'),
+					array('field' => 'url', 'label' => 'url', 'rules' => 'trim|required|valid_url')
 				);
 
 		$this->form_validation->set_rules($validation_rules);
@@ -137,10 +132,10 @@ class Advertisements extends CI_Controller {
 				$config['file_name'] = 'advertisement' . '_' . time();
 				$config['file_ext_tolower'] = true;
 				// $config['max_size'] = '1024';
-				// $config['min_width'] = '300';
-				// $config['max_width'] = '300';
-				// $config['min_height'] = '120';
-				// $config['max_height'] = '120';
+				// $config['min_width'] = '1440';
+				// $config['max_width'] = '1440';
+				// $config['min_height'] = '2960';
+				// $config['max_height'] = '2960';
 
 				$this->load->library('upload');
 				$this->upload->initialize($config, true);
@@ -175,7 +170,6 @@ class Advertisements extends CI_Controller {
 
 			if($file_upload){
 				$data['title'] = $this->input->post('title');
-				$data['description'] = $this->input->post('description');
 				$data['url'] = $this->input->post('url');
 	
 	     		$this->db->update('advertise',$data,array('id' => $this->input->post('id')));

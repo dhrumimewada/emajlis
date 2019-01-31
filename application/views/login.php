@@ -26,25 +26,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <?php echo $this->session->flashdata('message'); ?>
                 </div>		            
 		        <?php } ?>
-                <div class="panel-heading">
-                    <h4 class="text-center"> Sign In to <strong class="text-custom">Emajlis</strong></h4>
+                <div class="panel-heading text-center">
+                    <!-- <h4 class="text-center"> Sign In to <strong class="text-custom">Emajlis</strong></h4> -->
+                    <img src="<?php echo base_url().'assets/images/logo/logo.png'; ?>" alt="Logo" title="Logo" width="60%" height="60" data-max-width="100">
                 </div>
                 <div class="p-20">
                     <form class="form-horizontal m-t-20" method="post">
                         <div class="form-group ">
                             <div class="col-12">
-                                <input class="form-control" type="text" required="" placeholder="Username" name="email">
+                                <input class="form-control" type="text"  placeholder="Username" name="email" autocomplete="off">
+                                <div class="validation-error-label">
+                                    <?php echo form_error('email'); ?>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-12">
-                                <input class="form-control" type="password" required="" placeholder="Password" name="password">
+                                <input class="form-control" type="password"  placeholder="Password" name="password" autocomplete="off">
+                                <div class="validation-error-label">
+                                    <?php echo form_error('password'); ?>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group text-center m-t-40">
                             <div class="col-12">
-                                <button class="btn btn-pink btn-block text-uppercase waves-effect waves-light"
-                                        type="submit">Log In
+                                <button class="btn btn-block text-uppercase waves-effect waves-light login-btn" type="submit">login
                                 </button>
                             </div>
                         </div>

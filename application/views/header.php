@@ -19,6 +19,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url(); ?>assets/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
 
+        <!-- tags input -->
+        <link href="<?php echo base_url(); ?>assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css" rel="stylesheet" />
+
     </head>
     <body>
         <!-- Begin page -->

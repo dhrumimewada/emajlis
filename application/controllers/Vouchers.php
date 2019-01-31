@@ -47,7 +47,7 @@ class Vouchers extends CI_Controller {
 
 		if($this->form_validation->run() != FALSE)
 		{
-			$data['voucher_code'] = $this->input->post('voucher_code');
+			$data['voucher_code'] = strtoupper($this->input->post('voucher_code'));
 			$data['vendor_id'] = $this->input->post('vender');
 			$data['voucher_type'] = $this->input->post('voucher_type');
 			$data['voucher_amount'] = $this->input->post('voucher_amount');
@@ -87,7 +87,7 @@ class Vouchers extends CI_Controller {
 
 		if($this->form_validation->run() != FALSE)
 		{	
-			$data['voucher_code'] = $this->input->post('voucher_code');
+			$data['voucher_code'] = strtoupper($this->input->post('voucher_code'));
 			$data['vendor_id'] = $this->input->post('vender');
 			$data['voucher_type'] = $this->input->post('voucher_type');
 			$data['voucher_amount'] = $this->input->post('voucher_amount');

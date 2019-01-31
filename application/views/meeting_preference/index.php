@@ -19,22 +19,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
             <!-- Page-Title -->
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-lg-12">
 
                     <div class="card-box">
                         <div class="row">
-                            <div class="col-sm-6">
+ 
                                 <div class="m-b-30">
                                     <a href="<?php echo base_url()."meeting-preference/add"; ?>"><button id="addToTable" class="btn btn-success waves-effect waves-light"><i class="md md-add-circle-outline"></i> Add</button></a>
                                 </div>
-                            </div>
+
                         </div>
                         <div class="table-responsive">
                             <table class="table table-striped add-edit-table" id="meeting_preference_tbl">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>No.</th>
+
                                     <th>Name</th>
                                     <th>Actions</th>
                                 </tr>

@@ -25,7 +25,7 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
-		$data['recent_member_list'] = $recent_member_list = $this->db->query('select * from member order by id desc limit 5')->result_array();
+		$data['recent_member_list'] = $recent_member_list = $this->db->query('select * from member where deleted_at IS NULL order by id desc limit 5')->result_array();
 		$this->load->view('dashboard',$data);
 	}
 }

@@ -79,5 +79,6 @@ $route['admins'] = 'Admin_management/index';
 $route['admins/add'] = 'Admin_management/post';
 $route['admins/edit/(:any)'] = 'Admin_management/put/$1';
 
+
 $route['reset-password/(:any)'] = 'Login/reset_password/$1';
 $route['success_msg'] = 'Login/success_reset_password/';

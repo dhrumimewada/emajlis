@@ -28,8 +28,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                       <input type="hidden" name="id" value="<?php echo $advertise->id; ?>">
                                       
                                         <div class="form-group row">
+
                                             <div class="col-md-6">
-                                                <label class="col-form-label required" for="title">Title</label>
+                                                <label class="col-form-label required" for="title">Advertise title</label>
                                                 <div class="col-md-12 user-add">
                                                     <?php
     $field_value = NULL;
@@ -37,15 +38,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     if (isset($temp_value) && !empty($temp_value)) {
         $field_value = $temp_value;
     } else{
-        $field_value = htmlspecialchars($advertise->title);
+        $field_value = $advertise->title;
     }
     ?>
-                                                    <input id="title" name="title" type="text" class="form-control" placeholder="Ex: Upwork - Tell Users Why You Rock" autocomplete="off" value="<?php  echo $field_value;  ?>">
+                                                    <input id="title" name="title" type="text" class="form-control" placeholder="Enter title" autocomplete="off" value="<?php  echo $field_value; ?>">
                                                     <div class="validation-error-label">
                                                         <?php echo form_error('title'); ?>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-6">
                                                 <label class="col-form-label required" for="url">Advertise URL</label>
                                                 <div class="col-md-12 user-add">
@@ -65,31 +67,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 </div>
                                             </div>
                                             
-                                        </div>
-
-                                        <div class="form-group row">
-                                            
-                                            <div class="col-md-12">
-                                                <label class="col-form-label " for="description">Description</label>
-                                                <div class="col-md-12 user-add">
-                                                    <?php
-    $field_value = NULL;
-    $temp_value = set_value('description');
-    if (isset($temp_value) && !empty($temp_value)) {
-        $field_value = $temp_value;
-    } else{
-        $field_value = $advertise->description;
-    }
-    ?>
-                                                    <textarea id="description" class="form-control" name="description" placeholder="Enter description"><?php echo $field_value; ?></textarea>
-                                                </div>
-                                            </div>
-
-                                        </div>   
+                                        </div>  
 
                                         <div class="form-group row">
                                             <div class="col-md-10">
-                                                <label class="control-label">Image</label>
+                                                <label class="control-label required">Advertise Image</label>
                                                 <input accept="image/*" name="image" type="file" class="filestyle" data-iconname="fa fa-cloud-upload" id="filestyle-6" tabindex="-1" style="position: absolute; clip: rect(0px, 0px, 0px, 0px);">
                                                 <div class="bootstrap-filestyle input-group">
                                                     <input type="text" class="form-control " placeholder="" disabled=""> 
@@ -100,6 +82,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             </label>
                                                         </span>
                                                 </div>
+                                                <small style="display: block;">Image size should be 1440*2960 (accept: png, jpg, jpeg)</small>
                                             </div>
                                             <div class="col-md-2" style="padding-top: 30px;">
                                               <?php if(!empty($advertise->image)){

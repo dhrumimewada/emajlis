@@ -25,14 +25,12 @@ class Hashtags extends CI_Controller {
 		}
 	}
 
-	public function index()
-	{
+	public function index(){
 		$this->load->view('hashtags/hashtags');
 		$this->load->view('footer');
 	}
 
-	public function add()
-	{
+	public function add(){
 		$validation_rules = array(
 					
 					array('field' => 'tag_name', 'label' => 'hashtag name', 'rules' => 'trim|required|min_length[2]|max_length[30]|is_unique[hashtag.tag_name]'),
@@ -42,8 +40,7 @@ class Hashtags extends CI_Controller {
 
 		$this->form_validation->set_rules($validation_rules);
 
-		if($this->form_validation->run() != FALSE)
-		{
+		if($this->form_validation->run() != FALSE){
 			$data['tag_name'] = str_replace(' ', '',ucwords($this->input->post('tag_name')));
 			$data['newsfeed_url'] = $this->input->post('newsfeed_url');
 			$data['description'] = $this->input->post('description');
@@ -74,8 +71,7 @@ class Hashtags extends CI_Controller {
 		}
 	}
 
-	public function edit($id = '')
-	{
+	public function edit($id = ''){
 
 		$validation_rules = array(
 					
@@ -86,8 +82,7 @@ class Hashtags extends CI_Controller {
 
 		$this->form_validation->set_rules($validation_rules);
 
-		if($this->form_validation->run() != FALSE)
-		{
+		if($this->form_validation->run() != FALSE){
 			//echo '<pre>'; print_r($_POST); exit;
 			$data['tag_name'] = ucfirst($this->input->post('tag_name'));
 			$data['newsfeed_url'] = $this->input->post('newsfeed_url');
@@ -96,9 +91,7 @@ class Hashtags extends CI_Controller {
      		$this->db->update('hashtag',$data,array('id' => $this->input->post('id')));
      		$this->session->set_flashdata('message', 'Hashtag updated successfully.');
 			redirect('hashtags');
-		}
-		else
-		{
+		}else{
 			$data['hashtag'] = $this->admin_Model->get_single_record('hashtag',$id)->row();
 			if(!empty($data['hashtag']))
 			{

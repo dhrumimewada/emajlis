@@ -11,7 +11,7 @@ foreach ($member_meeting_preference as $key => $value) {
 }
 $goals = array();
 foreach ($member_goal as $key => $value) {
-  $goals[] = $value['lookingfor_id'];
+  $goals[] = $value['name'];
 }
 $hashtags = array();
 foreach ($member_hashtag as $key => $value) {
@@ -22,7 +22,7 @@ foreach ($member_industry as $key => $value) {
   $industries[] = $value['industry_id'];
 }
 // echo "<pre>";
-// print_r($member_education);
+// print_r($goals);
 // exit;
 ?>
 <div class="content-page">
@@ -87,7 +87,7 @@ foreach ($member_industry as $key => $value) {
                                             <div class="col-md-6">
                                                 <label class="col-form-label">Location Preference</label>
                                                 <div class="col-md-12 user-add">
-                                                    <select id="meeting_preference" name="meeting_preference[]" class="select2 select2-multiple" multiple="" data-placeholder="Select location preference" tabindex="-1" aria-hidden="true">
+                                                    <select id="meeting_preference" name="meeting_preference[]" class="select2-limiting-4 select2-multiple" multiple="" data-placeholder="Select location preference" tabindex="-1" aria-hidden="true">
                                                       <optgroup label="Select location preference">
                                                          <?php 
     $field_value = NULL;
@@ -116,25 +116,26 @@ foreach ($member_industry as $key => $value) {
                                             <div class="col-md-6">
                                                 <label class="col-form-label">Goal</label>
                                                 <div class="col-md-12 user-add">
-                                                    <select id="lookingfor" name="lookingfor[]" class="select2 select2-multiple" multiple="" data-placeholder="Select goal" tabindex="-1" aria-hidden="true">
+                                                    <select id="lookingfor" name="lookingfor[]" multiple data-placeholder="Select goal" tabindex="-1" aria-hidden="true" data-role="tagsinput">
                                                       <optgroup label="Select goal">
                                                          <?php 
-    $field_value = NULL;
-    $temp_value = set_value('lookingfor[]');
-    if (isset($temp_value) && !empty($temp_value)) {
-        $field_value = $temp_value;
-    }else{
-        $field_value = $goals;
-    }
-                                                         foreach($looking_for as $key => $value){
-                                                          if(isset($field_value)){
-                                                            if(in_array($value['id'], $field_value)){
-                                                              $select = 'selected';
-                                                              }else{
-                                                                $select = '';
-                                                              } 
-                                                            }?>
-                                                          <option value="<?php echo $value['id']; ?>" <?php echo $select; ?>><?php echo $value['name']; ?></option>
+    // $field_value = NULL;
+    // $temp_value = set_value('lookingfor[]');
+    // if (isset($temp_value) && !empty($temp_value)) {
+    //     $field_value = $temp_value;
+    // }else{
+    //     $field_value = $goals;
+    // }
+                                                          foreach($goals as $key => $value){
+    //                                                       if(isset($field_value)){
+    //                                                         if(in_array($value['id'], $field_value)){
+    //                                                           $select = 'selected';
+    //                                                           }else{
+    //                                                             $select = '';
+    //                                                           } 
+    //                                                         }
+                                                            ?>
+                                                          <option value="<?php echo $value; ?>"></option>
                                                          <?php }?> 
                                                       </optgroup>
                                                     </select>
@@ -172,7 +173,7 @@ foreach ($member_industry as $key => $value) {
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="col-form-label">Gender</label>
+                                                <label class="col-form-label required">Gender</label>
                                                 <div class="col-md-12 user-add custom-radio">
                                                   <label class="radio-inline">
                                                     <input type="radio" name="gender" value="0" <?php echo ($member->gender == '0')?'checked':''; ?>>Male
@@ -207,7 +208,7 @@ foreach ($member_industry as $key => $value) {
                                             <div class="col-md-6">
                                               <label class="col-form-label">Industry</label>
                                                 <div class="col-md-12 user-add">
-                                                    <select id="industry" name="industry[]" class="select2 select2-multiple" multiple="" data-placeholder="Select industry" tabindex="-1" aria-hidden="true">
+                                                    <select id="industry" name="industry[]" class="select2" data-placeholder="Select industry" tabindex="-1" aria-hidden="true">
                                                       <optgroup label="Select industry">
                                                          <?php 
     $field_value = NULL;
@@ -255,20 +256,20 @@ foreach ($member_industry as $key => $value) {
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="col-form-label" for="organization">Organization</label>
+                                                <label class="col-form-label" for="current_organization">Organization</label>
                                                 <div class="col-md-12 user-add">
                                                   <?php
     $field_value = NULL;
-    $temp_value = set_value('organization');
+    $temp_value = set_value('current_organization');
     if (isset($temp_value) && !empty($temp_value)) {
         $field_value = $temp_value;
     } else{
         $field_value =  $member->current_organization;
     }
     ?>
-                                                    <input autocomplete="off" type="text" id="organization" name="organization" class="form-control" placeholder="Enter organization" autocomplete="off" value="<?php  echo $field_value ?>">
+                                                    <input autocomplete="off" type="text" id="current_organization" name="current_organization" class="form-control" placeholder="Enter organization" autocomplete="off" value="<?php  echo $field_value ?>">
                                                     <div class="validation-error-label">
-                                                        <?php echo form_error('organization'); ?>
+                                                        <?php echo form_error('current_organization'); ?>
                                                     </div>
                                                 </div>
                                             </div>

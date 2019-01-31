@@ -530,12 +530,20 @@ $config['smtp_user'] = 'developer.eww@gmail.com';
 $config['smtp_pass'] = 'Admin@123*';
 $config['charset'] = "iso-8859-1";
 $config['mailtype'] = "html";
+$config['from'] = '"Emajlis" <excellentwebworld@admin.com>';
+$config['header'] = 'Emajlis';
 
 $config['profile_path'] = 'assets/images/users/';
 $config['advertisement_path'] = 'assets/images/advertisements/';
 $config['meeting_pref_path'] = 'assets/images/meeting_pref_icons/';
 
 $config['google_api_key'] = 'AIzaSyC_bE8OB_Zd-ik5uPQ9ZVgeBLM3cSTei5Y';
+$config['fcm_key'] = 'AIzaSyAr24VZ354Q74HuBRsooPPBSHKddWNPubw';
+
+$config['site_name'] = "Emajlis";
+$config['site_email'] = "support@emajlis.com";
+$config['copyrights'] =  '&#9400; 2019 Emajlis';
+$config['email_template_logo'] = '<img width="60" alt="logo" src="'.$config['base_url'].'assets/images/logo/logo.png"/>';
 
 define("CLIENT_ID", "860gjzrgkggcu9");
 define("CLIENT_SECRET", "Ir7vC4UnESUZanRz");

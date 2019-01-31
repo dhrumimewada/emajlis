@@ -3,32 +3,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
-	public function __construct()
-	{
+	public function __construct(){
 		parent::__construct();
-		//$this->load->model('admin_Model');
 	}
 
 	public function index(){
-		$this->form_validation->set_rules('email', 'email', 'required');
-        $this->form_validation->set_rules('password', 'password', 'required');
+		$validation_rules = array(
+					array('field' => 'email', 'label' => 'email', 'rules' => 'trim|required|max_length[225]|valid_email'),
+					array('field' => 'password', 'label' => 'password', 'rules' => 'trim|required')
+				);
+
+		$this->form_validation->set_rules($validation_rules);
     
-		if($this->form_validation->run() != FALSE)
-		{
+		if($this->form_validation->run() != FALSE){
 			$data = $this->admin_Model->login();
 
-			if($data == true)
-			{
+			if($data == true){
 				redirect('dashboard');
-			}
-			else
-			{
-				$this->session->set_flashdata('message', 'Invalid email or password.');
+			}else{
+				$this->session->set_flashdata('message', 'Invalid email address or password.');
                	redirect('/');
 			}			
-		}
-		else 
-        {  	
+		}else{  	
             $this->load->view('login');
         }
 	}

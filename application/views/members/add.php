@@ -116,7 +116,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <div class="col-md-6">
                                                 <label class="col-form-label">Location Preference</label>
                                                 <div class="col-md-12 user-add">
-                                                    <select id="location_preference" name="meeting_preference[]" class="select2 select2-multiple" multiple="" data-placeholder="Select location preference" tabindex="-1" aria-hidden="true">
+                                                    <select id="location_preference" name="meeting_preference[]" class="select2-limiting-4 select2-multiple" multiple="" data-placeholder="Select location preference" tabindex="-1" aria-hidden="true">
                                                       <optgroup label="Select location preference">
                                                          <?php 
     $field_value = NULL;
@@ -141,17 +141,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <div class="col-md-6">
                                                 <label class="col-form-label">Goal</label>
                                                 <div class="col-md-12 user-add">
-                                                    <select id="lookingfor" name="lookingfor[]" class="select2 select2-multiple" multiple="" data-placeholder="Select goal" tabindex="-1" aria-hidden="true">
+                                                    <select id="lookingfor" name="lookingfor[]" multiple data-placeholder="Select goal" tabindex="-1" aria-hidden="true" data-role="tagsinput">
                                                       <optgroup label="Select goal">
                                                          <?php 
-    $field_value = NULL;
-    $temp_value = set_value('lookingfor[]');
-    if (isset($temp_value) && !empty($temp_value)) {
-        $field_value = $temp_value;
-    } 
-                                                         foreach($looking_for as $key => $value){  ?>
-                                                          <option value="<?php echo $value['id']; ?>" <?php if(isset($field_value)){ echo (in_array($value['id'], $field_value))?'selected':''; } ?> ><?php echo $value['name']; ?></option>
-                                                         <?php }?> 
+    // $field_value = NULL;
+    // $temp_value = set_value('lookingfor[]');
+    // if (isset($temp_value) && !empty($temp_value)) {
+    //     $field_value = $temp_value;
+    // } 
+                                                         //foreach($looking_for as $key => $value){  ?>
+                                                          <!-- <option value="<?php echo $value['name']; ?>" <?php if(isset($field_value)){ echo (in_array($value['id'], $field_value))?'selected':''; } ?> ><?php echo $value['name']; ?></option> -->
+                                                         <?php //}?> 
                                                       </optgroup>
                                                     </select>
      
@@ -198,7 +198,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <div class="col-md-6">
                                                 <label class="col-form-label">Industry</label>
                                                 <div class="col-md-12 user-add">
-                                                    <select id="industry" name="industry[]" class="select2 select2-multiple" multiple="" data-placeholder="Select industry" tabindex="-1" aria-hidden="true">
+                                                    <select id="industry" name="industry[]" class="select2" data-placeholder="Select industry" tabindex="-1" aria-hidden="true">
                                                       <optgroup label="Select industry">
                                                          <?php 
     $field_value = NULL;
@@ -215,11 +215,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="col-form-label">Gender </label>
+                                                <label class="col-form-label required">Gender</label>
                                                 <div class="col-md-12 user-add custom-radio">
                                                   <label class="radio-inline">
                                                     <?php
-    $field_value = NULL;
+    $field_value = 0;
     $temp_value = set_value('gender');
     if (isset($temp_value) && !empty($temp_value)) {
         $field_value = $temp_value;
@@ -231,6 +231,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <input type="radio" name="gender" value="1" <?php echo ($field_value == '1')?'checked':''; ?> >Female
                                                   </label>
 
+                                                </div>
+                                                <div class="validation-error-label">
+                                                    <?php echo form_error('gender'); ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -253,18 +256,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="col-form-label" for="organization">Organization</label>
+                                                <label class="col-form-label" for="current_organization">Organization</label>
                                                 <div class="col-md-12 user-add">
                                                   <?php
     $field_value = NULL;
-    $temp_value = set_value('organization');
+    $temp_value = set_value('current_organization');
     if (isset($temp_value) && !empty($temp_value)) {
         $field_value = $temp_value;
     } 
     ?>
-                                                    <input autocomplete="off" type="text" id="organization" name="organization" class="form-control" placeholder="Enter organization" autocomplete="off" value="<?php  echo $field_value ?>">
+                                                    <input autocomplete="off" type="text" id="current_organization" name="current_organization" class="form-control" placeholder="Enter organization" autocomplete="off" value="<?php  echo $field_value ?>">
                                                     <div class="validation-error-label">
-                                                        <?php echo form_error('organization'); ?>
+                                                        <?php echo form_error('current_organization'); ?>
                                                     </div>
                                                 </div>
                                             </div>

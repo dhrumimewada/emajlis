@@ -20,26 +20,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <!-- Page-Title -->
                         <div class="row">
 
-                            <div class="col-sm-12">
+                            <div class="col-lg-12">
 
                                 <div class="card-box">
-                                    <div class="row">
-                                        <div class="col-sm-6">
+                                        <div class="col-lg-12">
                                             <div class="m-b-30">
                                                 <a href="<?php echo base_url()."members/add"; ?>"><button id="addToTable" class="btn btn-success waves-effect waves-light"><i class="md md-add-circle-outline"></i> Add</button></a>
                                             </div>
                                         </div>
-                                    </div>
                                     <div class="table-responsive">
                                         <table class="table table-striped add-edit-table" id="users_table">
                                             <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>No.</th>
                                                 <th>Full Name</th>
                                                 <th>Email</th>
-                                                <!-- <th>Profile Photo</th> -->
-                                                <th width="20%">Hashtags</th>
+                                                <th>Address</th>
                                                 <th>Actions</th>
                                             </tr>
                                             </thead>

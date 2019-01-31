@@ -27,7 +27,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </div>
                                     <div class="text-right">
                                         <h3 class="text-dark"><b class="counter">
-                                            <?php $member_query = $this->db->query('SELECT * FROM member');
+                                            <?php $date = date('Y-m-d H:i:s');
+                                            $member_query = $this->db->query('SELECT * FROM member WHERE deleted_at IS NULL');
                                             $total_members = $member_query->num_rows();  echo $total_members; ?>
                                         </b></h3>
                                         <p class="text-muted mb-0">Total Members</p>
@@ -84,6 +85,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
+
+
                         </div>
 
                         <!-- end row -->
@@ -103,7 +106,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <div id="portlet2" class="panel-collapse collapse show">
                                         <div class="portlet-body">
                                             <div class="table-responsive">
-                                                <table class="table" id="recenthashtags">
+                                                <table class="table table-striped" id="recenthashtags">
                                                     <thead>
                                                     <tr>
                                                         <th>Hashtag</th>
@@ -132,22 +135,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </div>
                                     <div  class="panel-collapse collapse show">
                                         <div class="portlet-body">
-                                            <div class="table-responsive">
+                                            <div class="table-responsive table-striped">
                                                 <table class="table">
                                                     <thead>
                                                     <tr>
                                                         <th>Name</th>
                                                         <th>Email</th>
-                                                        <th>Address</th>
+
                                                     </tr>
                                                     </thead>
                                                     <tbody>
                                                     <?php
                                                     foreach ($recent_member_list as $key => $value) {
                                                         echo "<tr>";
-                                                        echo "<td>".$value['fullname']."</td>";
-                                                        echo "<td>".$value['email']."</td>";
-                                                        echo "<td>".$value['address']."</td>";
+                                                        echo "<td class='nowrap'>".$value['fullname']."</td>";
+                                                        echo "<td class='nowrap'>".$value['email']."</td>";
+
                                                         echo "</tr>";
                                                     }
                                                     ?>
@@ -162,20 +165,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                         <!-- end row -->
 
-
-                        <div class="row">
-                            
-                        </div>
-
-                        <!-- end row -->
-
                     </div> <!-- container -->
 
                 </div> <!-- content -->
 
+<script src="<?php echo base_url(); ?>assets/plugins/waypoints/lib/jquery.waypoints.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/counterup/jquery.counterup.min.js"></script>
 <script>
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); 
+    $('.counter').counterUp({
+        delay: 100,
+        time: 1500
+    });
 });
 </script>

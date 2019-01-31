@@ -34,7 +34,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>No.</th>
                                 <th>Name</th>
                                 <th>Actions</th>
                             </tr>

@@ -26,8 +26,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="p-20">
                                     <form enctype="multipart/form-data" id="add_edit_advertise" class="form-horizontal" role="form" name="addadvertise" method="post">
                                         <div class="form-group row">
+
                                             <div class="col-md-6">
-                                                <label class="col-form-label required" for="title">Title</label>
+                                                <label class="col-form-label required" for="title">Advertise Title</label>
                                                 <div class="col-md-12 user-add">
                                                     <?php
     $field_value = NULL;
@@ -36,12 +37,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $field_value = $temp_value;
     } 
     ?>
-                                                    <input id="title" name="title" type="text" class="form-control" placeholder="Ex: Upwork - Tell Users Why You Rock" autocomplete="off" value="<?php  echo $field_value;  ?>">
+                                                    <input id="title" name="title" type="text" class="form-control" placeholder="Enter title" autocomplete="off" value="<?php  echo $field_value; ?>">
                                                     <div class="validation-error-label">
                                                         <?php echo form_error('title'); ?>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-6">
                                                 <label class="col-form-label required" for="url">Advertise URL</label>
                                                 <div class="col-md-12 user-add">
@@ -59,29 +61,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 </div>
                                             </div>
                                             
-                                        </div>
-                                        
-                                        <div class="form-group row">
-                                            
-                                            <div class="col-md-12">
-                                                <label class="col-form-label " for="description">Description</label>
-                                                <div class="col-md-12 user-add">
-                                                    <?php
-    $field_value = NULL;
-    $temp_value = set_value('description');
-    if (isset($temp_value) && !empty($temp_value)) {
-        $field_value = $temp_value;
-    } 
-    ?>
-                                                    <textarea id="description" class="form-control" name="description" placeholder="Enter description"><?php echo $field_value; ?></textarea>
-                                                </div>
-                                            </div>
-
-                                        </div>                                   
+                                        </div>                                  
 
                                         <div class="form-group row">
                                             <div class="col-md-10">
-                                                <label class="control-label" for="filestyle-6">Image</label>
+                                                <label class="control-label required" for="filestyle-6">Advertise Image</label>
                                                 <input accept="image/*" name="image" type="file" class="filestyle" data-iconname="fa fa-cloud-upload" id="filestyle-6" tabindex="-1" style="position: absolute; clip: rect(0px, 0px, 0px, 0px);">
                                                 <div class="bootstrap-filestyle input-group">
                                                     <input type="text" class="form-control " placeholder="" disabled=""> 
@@ -92,7 +76,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             </label>
                                                         </span>
                                                 </div>
+                                                <div class="validation-error-label">
+                                                    <?php echo form_error('image'); ?>
+                                                </div>
+                                                <small style="display: block;">Image size should be 1440*2960 (accept: png, jpg, jpeg)</small>
                                             </div>
+
+
                                             <div class="col-md-2" style="padding-top: 30px;">
                                                 <img id="preview-img" src="<?php echo base_url().'assets/images/advertisements/member-noimg.png'; ?>" alt="member image" style="height: auto; width: 50px;" />
                                             </div>

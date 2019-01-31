@@ -25,6 +25,11 @@ class Admin_management extends CI_Controller {
 		}
 	}
 
+	public function sendmail()
+	{
+		$this->load->view('email_template/email_template');
+	}
+
 	public function index()
 	{
 		$this->load->view('admin_management/index');

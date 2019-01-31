@@ -45,7 +45,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                                         <div class="form-group row">
                                             <div class="col-md-10">
-                                                <label class="col-form-label required">Meeting Preference Icon Image</label>
+                                                <label class="col-form-label">Meeting Preference Icon Image</label>
                                                 <input accept="image/*" name="image" type="file" class="filestyle" data-iconname="fa fa-cloud-upload" id="filestyle-6" tabindex="-1" style="position: absolute; clip: rect(0px, 0px, 0px, 0px);">
 
                                                 <div class="bootstrap-filestyle input-group">
